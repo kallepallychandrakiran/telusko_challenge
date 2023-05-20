@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class CustomPascalTriangle {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of rows: ");
+        int numRows = scanner.nextInt();
+
+        int[][] pascalTriangle = getPascalTriangle(numRows);
+
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col <= row; col++) {
+                System.out.print(pascalTriangle[row][col] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static int[][] getPascalTriangle(int numRows) {
+        int[][] pascalTriangle = new int[numRows][numRows];
+        for (int row = 0; row < numRows; row++) {
+            pascalTriangle[row][0] = 1;
+            pascalTriangle[row][row] = 1;
+        }
+
+        for (int row = 2; row < numRows; row++) {
+            for (int col = 1; col < row; col++) {
+                pascalTriangle[row][col] = pascalTriangle[row - 1][col - 1] + pascalTriangle[row - 1][col];
+            }
+        }
+
+        return pascalTriangle;
+    }
+}
