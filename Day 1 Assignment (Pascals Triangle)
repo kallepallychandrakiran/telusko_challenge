@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class CustomPascalTriangle {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of rows: ");
+        int numRows = scanner.nextInt();
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j <= i; j++) {
+                System.out.print(calculatePascalNumber(i, j) + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static int calculatePascalNumber(int row, int col) {
+        if (col == 0 || col == row) {
+            return 1;
+        } else {
+            int leftNumber = calculatePascalNumber(row - 1, col - 1);
+            int rightNumber = calculatePascalNumber(row - 1, col);
+            return leftNumber + rightNumber;
+        }
+    }
+}
